@@ -4,10 +4,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_layout_grupoXCP"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:background="#E8EAF6"
     android:orientation="vertical"
     card_view:cardCornerRadius="10dp">
 
@@ -21,35 +22,77 @@
         android:padding="@dimen/padding">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:transitionName="initial_transition"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Nombre del Grupo"
+            android:textSize="17sp" />
+
+        <TextView
             android:id="@+id/txtNombreGrupo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:transitionName="initial_transition"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtColonia"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:transitionName="delete_button_transition"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:text="Colonia;" />
-
-            <TextView
-                android:id="@+id/txtValueColonia"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:transitionName="name_transition"
-                android:textColor="@android:color/black" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtColonia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:transitionName="delete_button_transition"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="Colonia: " />
+
+                <TextView
+                    android:id="@+id/txtValueColonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:transitionName="name_transition"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtMunicipio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:transitionName="delete_button_transition"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="Municipio: " />
+
+                <TextView
+                    android:id="@+id/txtValueMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:transitionName="name_transition"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
