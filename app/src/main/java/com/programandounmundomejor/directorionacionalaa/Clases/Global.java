@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Global {
     // Servicio
-    //public static String system_WServices = "http://192.168.0.5/WebServiceAA/";
-    public static String system_WServices = "http://www.aa.org.mx/WebServiceAA/";
+    //public static String system_WServices = "http://172.27.48.92/WebServiceAA/";
+    public static String system_WServices = "http://aa.org.mx/WebServiceAA/";
     public static String signature = "ProgramandoUnMundoMejor";
 
     // Listas Combos
