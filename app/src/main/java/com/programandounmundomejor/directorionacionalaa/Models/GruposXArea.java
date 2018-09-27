@@ -1,18 +1,22 @@
 package com.programandounmundomejor.directorionacionalaa.Models;
 
-public class GruposXCP {
+public class GruposXArea {
     private int idGrupo;
     private String nombreGrupo;
     private String municipio;
     private String colonia;
     private String estado;
+    private String area;
+    private String distrito;
 
-    public GruposXCP(int idGrupo, String nombreGrupo, String colonia, String municipio, String estado){
+    public GruposXArea(int idGrupo, String nombreGrupo, String colonia, String municipio, String estado, String area, String distrito){
         this.idGrupo = idGrupo;
         this.nombreGrupo = nombreGrupo;
         this.municipio = municipio;
         this.colonia = colonia;
         this.estado = estado;
+        this.area = area;
+        this.distrito = distrito;
     }
 
     public int getIdGrupo() {
@@ -53,5 +57,21 @@ public class GruposXCP {
 
     public void setEstado(String colonia) {
         this.colonia = colonia;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
     }
 }

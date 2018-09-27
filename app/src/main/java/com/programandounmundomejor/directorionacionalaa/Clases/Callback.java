@@ -1,6 +1,8 @@
 package com.programandounmundomejor.directorionacionalaa.Clases;
 
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +15,9 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstDistritosComplete;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstados;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstadosComplete;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXCP;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXEstado;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipios;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipiosComplete;
 
@@ -37,6 +41,12 @@ public class Callback {
                 break;
             case "gruposXCP":
                 parseJSONGruposXCP(result);
+                break;
+            case "gruposXEstado":
+                parseJSONGruposXEstado(result);
+                break;
+            case "gruposXArea":
+                parseJSONGruposXArea(result);
                 break;
 
         }
@@ -128,6 +138,42 @@ public class Callback {
                         objectGrupos.getString("Colonia"),
                         objectGrupos.getString("MnpioDel"),
                         objectGrupos.getString("Estado")));
+            }
+        } catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+    private void parseJSONGruposXEstado(String result){
+        try{
+            lstGruposXEstado.clear();
+            JSONArray jsonGrupos = new JSONArray(result);
+            for(int i = 0; i < jsonGrupos.length(); i++){
+                JSONObject objectGrupos = jsonGrupos.getJSONObject(i);
+                lstGruposXEstado.add(new GruposXEstado(objectGrupos.getInt("IdGrupo"),
+                        objectGrupos.getString("NombreGrupo"),
+                        objectGrupos.getString("Colonia"),
+                        objectGrupos.getString("MnpioDel"),
+                        objectGrupos.getString("Estado")));
+            }
+        } catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+    private void parseJSONGruposXArea(String result){
+        try{
+            lstGruposXArea.clear();
+            JSONArray jsonGrupos = new JSONArray(result);
+            for(int i = 0; i < jsonGrupos.length(); i++){
+                JSONObject objectGrupos = jsonGrupos.getJSONObject(i);
+                lstGruposXArea.add(new GruposXArea(objectGrupos.getInt("IdGrupo"),
+                        objectGrupos.getString("NombreGrupo"),
+                        objectGrupos.getString("Colonia"),
+                        objectGrupos.getString("MnpioDel"),
+                        objectGrupos.getString("Estado"),
+                        objectGrupos.getString("IdAreaDistrito"),
+                        objectGrupos.getString("IdAreaDistrito")));
             }
         } catch (Exception e){
             e.getMessage();

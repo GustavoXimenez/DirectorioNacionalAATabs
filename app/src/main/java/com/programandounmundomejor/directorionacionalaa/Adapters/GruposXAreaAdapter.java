@@ -12,21 +12,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
 import com.programandounmundomejor.directorionacionalaa.R;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.ViewHolder> {
+public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.ViewHolder> {
 
-    private static final String DEBUG_TAG = "GruposXCPAdapter";
+    private static final String DEBUG_TAG = "GruposXAreaAdapter";
 
     private Context context;
-    private List<GruposXCP> groupList;
+    private List<GruposXArea> groupList;
 
-    public GruposXCPAdapter(Context context, List<GruposXCP> groupList){
+    public GruposXAreaAdapter(Context context, List<GruposXArea> groupList){
         this.context = context;
         this.groupList = groupList;
     }
@@ -35,7 +34,7 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.holder_groupxcp, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.holder_groupxarea, viewGroup, false);
         return new ViewHolder(view);
     }
 

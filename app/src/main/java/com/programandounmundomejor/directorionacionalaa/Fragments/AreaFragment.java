@@ -3,16 +3,20 @@ package com.programandounmundomejor.directorionacionalaa.Fragments;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
+import com.programandounmundomejor.directorionacionalaa.GruposXAreaActivity;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.R;
 
 import java.util.HashMap;
@@ -28,6 +32,7 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstDistritos;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstados;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstadosComplete;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipios;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.municipioSelect;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
@@ -36,6 +41,7 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.sig
 public class AreaFragment extends Fragment {
 
     private EditText edtArea, edtDistrito;
+    private Button btnSearhGrupos;
     private View view;
 
     //Variables globales
@@ -60,6 +66,7 @@ public class AreaFragment extends Fragment {
     private void initViews(){
         edtArea = (EditText) view.findViewById(R.id.edtArea);
         edtDistrito = (EditText) view.findViewById(R.id.edtDistrito);
+        btnSearhGrupos = (Button) view.findViewById(R.id.btnSearhGrupos);
 
         initActions();
     }
@@ -76,6 +83,22 @@ public class AreaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 selectDistrito();
+            }
+        });
+
+        btnSearhGrupos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!edtArea.getText().toString().isEmpty()){
+                    final int idArea = searchId(lstAreasComplete, areaSelect);
+                    String params = "signature="+signature+"&idArea="+idArea;
+                    if(!edtDistrito.getText().toString().isEmpty()){
+                        params = params + "&idDistrito="+distritosSelect;
+                    }
+                    searchGroupsXArea(params);
+                } else {
+                    Toast.makeText(getActivity(), "Debes seleccionar un Área", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -182,5 +205,28 @@ public class AreaFragment extends Fragment {
         AlertDialog alertDialog = cultureDialog.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+    }
+
+    private void searchGroupsXArea(final String params){
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                final String response = postRequest.enviarPost(params, "searchGrupoXArea.php");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.processingResult("gruposXArea", response);
+                        if(lstGruposXArea.size() > 0){
+                            //Creamos array de estados
+                            Intent intent = new Intent(getActivity(), GruposXAreaActivity.class);
+                            getActivity().startActivity(intent);
+                        } else {
+                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        };
+        thread.start();
     }
 }

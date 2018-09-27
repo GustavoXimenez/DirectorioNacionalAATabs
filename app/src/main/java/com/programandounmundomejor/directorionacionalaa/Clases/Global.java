@@ -1,6 +1,8 @@
 package com.programandounmundomejor.directorionacionalaa.Clases;
 
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,8 @@ public class Global {
 
     // Listas de Objetos de Grupos
     public static List<GruposXCP> lstGruposXCP = new ArrayList<>();
+    public static List<GruposXEstado> lstGruposXEstado = new ArrayList<>();
+    public static List<GruposXArea> lstGruposXArea = new ArrayList<>();
 
     // Elements Selections
     public static String estadoSelect;
@@ -36,4 +40,6 @@ public class Global {
     public static String areaSelect;
     public static String distritosSelect;
     public static String codigoPostalSelect;
+    public static String areaId;
+    public static String distritosId;
 }
