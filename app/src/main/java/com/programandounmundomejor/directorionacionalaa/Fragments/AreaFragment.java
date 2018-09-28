@@ -201,6 +201,24 @@ public class AreaFragment extends Fragment {
             }
         });
 
+        cultureDialog.setNegativeButton("No seleccionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (type){
+                    case "area":
+                        areaSelect = null;
+                        distritosSelect = null;
+                        edtArea.setText("");
+                        edtDistrito.setText("");
+                        break;
+                    case "distrito":
+                        distritosSelect = null;
+                        edtDistrito.setText("");
+                        break;
+                }
+            }
+        });
+
         //Display the Alert Dialog on app interface
         AlertDialog alertDialog = cultureDialog.create();
         alertDialog.setCancelable(false);

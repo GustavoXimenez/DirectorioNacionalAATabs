@@ -1,8 +1,14 @@
 package com.programandounmundomejor.directorionacionalaa.Adapters;
 
 import android.animation.Animator;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.programandounmundomejor.directorionacionalaa.GrupoActivity;
+import com.programandounmundomejor.directorionacionalaa.GruposXAreaActivity;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
 import com.programandounmundomejor.directorionacionalaa.R;
@@ -24,10 +32,12 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
 
     private Context context;
     private List<GruposXArea> groupList;
+    private Activity activityGrupo;
 
-    public GruposXAreaAdapter(Context context, List<GruposXArea> groupList){
+    public GruposXAreaAdapter(Activity activity, Context context, List<GruposXArea> groupList){
         this.context = context;
         this.groupList = groupList;
+        this.activityGrupo = activity;
     }
 
     @NonNull
@@ -110,7 +120,18 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "hola", Toast.LENGTH_LONG).show();
+
+                    Pair<View, String> p1 = Pair.create((View) txtNombreGrupo, GruposXAreaActivity.TRANSITION_INITIAL);
+                    Pair<View, String> p2 = Pair.create((View) txtValueColonia, GruposXAreaActivity.TRANSITION_NAME);
+                    Pair<View, String> p3 = Pair.create((View) txtValueMunicipio, GruposXAreaActivity.TRANSITION_DELETE_BUTTON);
+
+                    ActivityOptionsCompat options;
+                    Activity activity = (AppCompatActivity) context;
+                    options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, p1, p2, p3);
+
+                    Intent intent = new Intent(context, GrupoActivity.class);
+                    int requestCode = getAdapterPosition();
+                    ((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
                 }
             });
         }

@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".GruposXCPActivity" />
         <activity android:name=".GruposXEstadoActivity" />
-        <activity android:name=".GruposXAreaActivity"></activity>
+        <activity android:name=".GruposXAreaActivity" />
+        <activity android:name=".GrupoActivity"></activity>
     </application>
 
 </manifest>

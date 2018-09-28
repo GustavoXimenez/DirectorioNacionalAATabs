@@ -14,13 +14,17 @@ public class GruposXAreaActivity extends AppCompatActivity {
     private GruposXAreaAdapter adapter;
     private RecyclerView recyclerView;
 
+    public static final String TRANSITION_INITIAL = "initial_transition";
+    public static final String TRANSITION_NAME = "name_transition";
+    public static final String TRANSITION_DELETE_BUTTON = "delete_button_transition";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupos_xarea);
 
         if(adapter == null){
-            adapter = new GruposXAreaAdapter(this, lstGruposXArea);
+            adapter = new GruposXAreaAdapter(this,this, lstGruposXArea);
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_gruposXArea);

@@ -250,6 +250,32 @@ public class DireccionFragment extends Fragment {
             }
         });
 
+        cultureDialog.setNegativeButton("No seleccionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (type){
+                    case "estado":
+                        estadoSelect = null;
+                        municipioSelect = null;
+                        coloniaSelect = null;
+                        edtEstado.setText("");
+                        edtMunicipio.setText("");
+                        edtColonia.setText("");
+                        break;
+                    case "municipio":
+                        municipioSelect = null;
+                        coloniaSelect = null;
+                        edtMunicipio.setText("");
+                        edtColonia.setText("");
+                        break;
+                    case "colonia":
+                        coloniaSelect = null;
+                        edtColonia.setText("");
+                        break;
+                }
+            }
+        });
+
         //Display the Alert Dialog on app interface
         AlertDialog alertDialog = cultureDialog.create();
         alertDialog.setCancelable(false);
