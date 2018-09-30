@@ -2,8 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/colorPrimary"/>
 
-    <item android:bottom="150dp">
-        <bitmap android:src="@mipmap/logo_aa"
+    <item android:bottom="200dp">
+        <bitmap android:src="@mipmap/logo_aa_sm"
+            android:gravity="center" />
+    </item>
+
+    <item android:bottom="50dp">
+        <bitmap android:src="@mipmap/txt_aa"
             android:gravity="center" />
     </item>
 
