@@ -1,6 +1,5 @@
 package com.programandounmundomejor.directorionacionalaa.Clases;
 
-import com.programandounmundomejor.directorionacionalaa.Models.Grupo;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
@@ -33,8 +32,6 @@ public class Global {
     public static List<GruposXCP> lstGruposXCP = new ArrayList<>();
     public static List<GruposXEstado> lstGruposXEstado = new ArrayList<>();
     public static List<GruposXArea> lstGruposXArea = new ArrayList<>();
-    public static List<Grupo> lstGrupo = new ArrayList<>();
-
 
     // Elements Selections
     public static String estadoSelect;

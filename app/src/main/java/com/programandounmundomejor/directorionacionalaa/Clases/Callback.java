@@ -1,6 +1,5 @@
 package com.programandounmundomejor.directorionacionalaa.Clases;
 
-import com.programandounmundomejor.directorionacionalaa.Models.Grupo;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
@@ -16,7 +15,6 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstDistritosComplete;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstados;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstadosComplete;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGrupo;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXCP;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXEstado;
@@ -49,9 +47,6 @@ public class Callback {
                 break;
             case "gruposXArea":
                 parseJSONGruposXArea(result);
-                break;
-            case "grupo":
-                parseJSONGrupo(result);
                 break;
 
         }
@@ -179,30 +174,6 @@ public class Callback {
                         objectGrupos.getString("Estado"),
                         objectGrupos.getString("IdAreaDistrito"),
                         objectGrupos.getString("IdAreaDistrito")));
-            }
-        } catch (Exception e){
-            e.getMessage();
-        }
-    }
-
-    private void parseJSONGrupo(String result){
-        try{
-            lstGrupo.clear();
-            JSONArray jsonGrupos = new JSONArray(result);
-            for(int i = 0; i < jsonGrupos.length(); i++){
-                JSONObject objectGrupos = jsonGrupos.getJSONObject(i);
-                lstGrupo.add(new Grupo(objectGrupos.getInt("IdGrupo"),
-                        objectGrupos.getString("NombreGrupo"),
-                        objectGrupos.getString("FechaInicio"),
-                        objectGrupos.getString("Calle"),
-                        objectGrupos.getString("NumExt"),
-                        objectGrupos.getString("NumInt"),
-                        objectGrupos.getString("Referencia"),
-                        objectGrupos.getString("Colonia"),
-                        objectGrupos.getString("MnpioDel"),
-                        objectGrupos.getString("Estado"),
-                        objectGrupos.getString("IdAreaDistrito"),
-                        objectGrupos.getString("DescArea")));
             }
         } catch (Exception e){
             e.getMessage();

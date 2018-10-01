@@ -18,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
-import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GrupoActivity;
 import com.programandounmundomejor.directorionacionalaa.GruposXAreaActivity;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
@@ -28,9 +26,6 @@ import com.programandounmundomejor.directorionacionalaa.R;
 
 import java.util.List;
 
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGrupo;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
-
 public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.ViewHolder> {
 
     private static final String DEBUG_TAG = "GruposXAreaAdapter";
@@ -38,9 +33,6 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
     private Context context;
     private List<GruposXArea> groupList;
     private Activity activityGrupo;
-
-    private PostRequest postRequest = new PostRequest();
-    private Callback callback = new Callback();
 
     public GruposXAreaAdapter(Activity activity, Context context, List<GruposXArea> groupList){
         this.context = context;
@@ -128,6 +120,7 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Pair<View, String> p1 = Pair.create((View) txtNombreGrupo, GruposXAreaActivity.TRANSITION_INITIAL);
                     Pair<View, String> p2 = Pair.create((View) txtValueColonia, GruposXAreaActivity.TRANSITION_NAME);
                     Pair<View, String> p3 = Pair.create((View) txtValueMunicipio, GruposXAreaActivity.TRANSITION_DELETE_BUTTON);
@@ -138,33 +131,10 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
 
                     Intent intent = new Intent(context, GrupoActivity.class);
                     int requestCode = getAdapterPosition();
-                    //((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
-                    getValuesGrupo(intent, requestCode, options, 299);
+                    ((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
                 }
             });
         }
-    }
-
-    private void getValuesGrupo(final Intent intent, final int requestCode, final ActivityOptionsCompat options, final int idGrupo){
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                final String response = postRequest.enviarPost("signature="+signature+"&idGrupo="+idGrupo, "searchGrupoXId.php");
-                activityGrupo.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.processingResult("grupo", response);
-                        if(lstGrupo.size() > 0){
-                            //Creamos array de estados
-                            ((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
-                        } else {
-                            Toast.makeText(context, "error en el servicio", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        };
-        thread.start();
     }
 
     private int getValueColor(int position){
