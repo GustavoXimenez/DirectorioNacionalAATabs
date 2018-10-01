@@ -15,8 +15,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
+import com.programandounmundomejor.directorionacionalaa.Clases.GlobalMethos;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GruposXCPActivity;
+import com.programandounmundomejor.directorionacionalaa.GruposXEstadoActivity;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 import com.programandounmundomejor.directorionacionalaa.R;
 
 import java.util.HashMap;
@@ -29,6 +32,7 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstados;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstadosComplete;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXCP;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXEstado;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipios;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.municipioSelect;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
@@ -42,6 +46,7 @@ public class DireccionFragment extends Fragment {
     //Variables globales
     private PostRequest postRequest = new PostRequest();
     private Callback callback = new Callback();
+    private GlobalMethos globalMethos = new GlobalMethos();
     private int selectedItem = 0;
 
     @Override
@@ -166,6 +171,8 @@ public class DireccionFragment extends Fragment {
                     @Override
                     public void run() {
                         try{
+                            estadoSelect = globalMethos.limpiarAcentos(estadoSelect);
+                            municipioSelect = globalMethos.limpiarAcentos(municipioSelect);
                             String params = "signature="+signature+"&Estado="+estadoSelect + "&Municipio="+municipioSelect;
                             final String response = postRequest.enviarPost(params, "searchColonias.php");
                             getActivity().runOnUiThread(new Runnable() {
@@ -243,6 +250,32 @@ public class DireccionFragment extends Fragment {
             }
         });
 
+        cultureDialog.setNegativeButton("No seleccionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (type){
+                    case "estado":
+                        estadoSelect = null;
+                        municipioSelect = null;
+                        coloniaSelect = null;
+                        edtEstado.setText("");
+                        edtMunicipio.setText("");
+                        edtColonia.setText("");
+                        break;
+                    case "municipio":
+                        municipioSelect = null;
+                        coloniaSelect = null;
+                        edtMunicipio.setText("");
+                        edtColonia.setText("");
+                        break;
+                    case "colonia":
+                        coloniaSelect = null;
+                        edtColonia.setText("");
+                        break;
+                }
+            }
+        });
+
         //Display the Alert Dialog on app interface
         AlertDialog alertDialog = cultureDialog.create();
         alertDialog.setCancelable(false);
@@ -254,7 +287,18 @@ public class DireccionFragment extends Fragment {
             codigoPostalSelect = edtCodigoPostal.getText().toString();
             searchGroupsXCP();
         } else {
-            Toast.makeText(getActivity(), "Buscar por direccion", Toast.LENGTH_LONG).show();
+            if(!edtEstado.getText().toString().isEmpty()){
+                String params = "signature="+signature+"&estado="+estadoSelect;
+                if(!edtMunicipio.getText().toString().isEmpty()){
+                    params = params + "&municipio="+municipioSelect;
+                    if(!edtColonia.getText().toString().isEmpty()){
+                        params = params + "&colonia="+coloniaSelect;
+                    }
+                }
+                searchGroupsXEstado(params);
+            } else {
+                Toast.makeText(getActivity(), "Debes ingresar valores", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -272,7 +316,30 @@ public class DireccionFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), GruposXCPActivity.class);
                             getActivity().startActivity(intent);
                         } else {
-                            Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        };
+        thread.start();
+    }
+
+    private void searchGroupsXEstado(final String params){
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                final String response = postRequest.enviarPost(params, "searchGrupoXEstado.php");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.processingResult("gruposXEstado", response);
+                        if(lstGruposXEstado.size() > 0){
+                            //Creamos array de estados
+                            Intent intent = new Intent(getActivity(), GruposXEstadoActivity.class);
+                            getActivity().startActivity(intent);
+                        } else {
+                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

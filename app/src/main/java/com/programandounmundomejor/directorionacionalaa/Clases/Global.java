@@ -1,6 +1,9 @@
 package com.programandounmundomejor.directorionacionalaa.Clases;
 
+import com.programandounmundomejor.directorionacionalaa.Models.Grupo;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +11,8 @@ import java.util.List;
 
 public class Global {
     // Servicio
-    //public static String system_WServices = "http://192.168.0.5/WebServiceAA/";
-    public static String system_WServices = "http://www.aa.org.mx/WebServiceAA/";
+    //public static String system_WServices = "http://172.27.48.92/WebServiceAA/";
+    public static String system_WServices = "http://aa.org.mx/WebServiceAA/";
     public static String signature = "ProgramandoUnMundoMejor";
 
     // Listas Combos
@@ -28,6 +31,10 @@ public class Global {
 
     // Listas de Objetos de Grupos
     public static List<GruposXCP> lstGruposXCP = new ArrayList<>();
+    public static List<GruposXEstado> lstGruposXEstado = new ArrayList<>();
+    public static List<GruposXArea> lstGruposXArea = new ArrayList<>();
+    public static List<Grupo> lstGrupo = new ArrayList<>();
+
 
     // Elements Selections
     public static String estadoSelect;
@@ -36,4 +43,6 @@ public class Global {
     public static String areaSelect;
     public static String distritosSelect;
     public static String codigoPostalSelect;
+    public static String areaId;
+    public static String distritosId;
 }

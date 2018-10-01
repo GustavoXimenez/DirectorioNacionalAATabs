@@ -1,13 +1,13 @@
 package com.programandounmundomejor.directorionacionalaa.Models;
 
-public class GruposXCP {
+public class GruposXEstado {
     private int idGrupo;
     private String nombreGrupo;
     private String municipio;
     private String colonia;
     private String estado;
 
-    public GruposXCP(int idGrupo, String nombreGrupo, String colonia, String municipio, String estado){
+    public GruposXEstado(int idGrupo, String nombreGrupo, String colonia, String municipio, String estado){
         this.idGrupo = idGrupo;
         this.nombreGrupo = nombreGrupo;
         this.municipio = municipio;

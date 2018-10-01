@@ -12,35 +12,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
+import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 import com.programandounmundomejor.directorionacionalaa.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.ViewHolder> {
+public class GruposXEstadoAdapter extends RecyclerView.Adapter<GruposXEstadoAdapter.ViewHolder> {
 
     private static final String DEBUG_TAG = "GruposXCPAdapter";
 
     private Context context;
-    private List<GruposXCP> groupList;
+    private List<GruposXEstado> groupList;
 
-    public GruposXCPAdapter(Context context, List<GruposXCP> groupList){
+    public GruposXEstadoAdapter(Context context, List<GruposXEstado> groupList) {
         this.context = context;
         this.groupList = groupList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.holder_groupxcp, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.holder_groupxestado, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         String nombreGrupo = groupList.get(position).getNombreGrupo();
         String colonia = groupList.get(position).getColonia();
         String municipio = groupList.get(position).getMunicipio();
@@ -93,6 +91,7 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
             return groupList.size();
         }
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
