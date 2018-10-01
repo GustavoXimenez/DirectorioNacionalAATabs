@@ -18,16 +18,22 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashScreen">
+        </activity>
+        <activity android:name=".GruposXCPActivity" />
+        <activity android:name=".GruposXEstadoActivity" />
+        <activity android:name=".GruposXAreaActivity" />
+        <activity android:name=".GrupoActivity" />
+        <activity
+            android:name=".OnboardingActivity"
+            android:screenOrientation="portrait" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".GruposXCPActivity" />
-        <activity android:name=".GruposXEstadoActivity" />
-        <activity android:name=".GruposXAreaActivity" />
-        <activity android:name=".GrupoActivity"></activity>
     </application>
 
 </manifest>
