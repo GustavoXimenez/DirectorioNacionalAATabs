@@ -1,45 +1,610 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorBackgroundGray"
     android:orientation="vertical"
-    android:padding="@dimen/padding"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:transitionName="layout_transition"
     tools:context=".GrupoActivity">
 
-    <TextView
-        android:id="@+id/initial"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:transitionName="initial_transition" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textCapSentences"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:transitionName="name_transition" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/initial"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@color/colorBlueOne"
+                android:transitionName="initial_transition"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:transitionName="initial_transition"
+                    android:textColor="@android:color/white"
+                    android:text="Nombre del Grupo"
+                    android:padding="5dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtNombreGrupo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:transitionName="initial_transition"
+                    android:text="Test Test"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:textSize="26sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:transitionName="initial_transition"
+                android:text="Dirección"
+                android:textColor="@color/colorBlueOne"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondo_elevation"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Calle"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtCalle"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Numero Exterior"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtNumero"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Colonia"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtColonia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Municipio"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtMunicipio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Estado"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtEstado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Referencia"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtReferencias"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:transitionName="initial_transition"
+                android:text="Información"
+                android:textColor="@color/colorBlueOne"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondo_elevation"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Area"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtArea"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Distrito"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtDistrito"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Fecha de Inicio"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtFechaInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:transitionName="initial_transition"
+                android:text="Horarios de sesión"
+                android:textColor="@color/colorBlueOne"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondo_elevation"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Lunes"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtLunes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Martes"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtMartes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Miercoles"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtMiercoles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Jueves"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtJueves"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Viernes"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtViernes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Sábado"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtSabado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:transitionName="initial_transition"
+                            android:text="Domingo"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtDomingo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
