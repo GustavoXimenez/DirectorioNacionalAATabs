@@ -34,7 +34,7 @@ public class OnboardingActivity extends FragmentActivity {
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
             // Start the onboarding Activity
-            Intent onboarding = new Intent(this, MainActivity.class);
+            Intent onboarding = new Intent(this, SplashActivity.class);
             startActivity(onboarding);
 
             // Close the main Activity
