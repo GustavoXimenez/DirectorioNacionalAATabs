@@ -20,6 +20,7 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXCP;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXEstado;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstHorarios;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipios;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipiosComplete;
 
@@ -52,6 +53,9 @@ public class Callback {
                 break;
             case "grupo":
                 parseJSONGrupo(result);
+                break;
+            case "horarios":
+                parseJSONHorarios(result);
                 break;
 
         }
@@ -204,6 +208,26 @@ public class Callback {
                         objectGrupos.getString("IdAreaDistrito"),
                         objectGrupos.getString("DescArea")));
             }
+        } catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+    private void parseJSONHorarios(String result){
+        try{
+            lstHorarios.clear();
+            JSONObject objectGrupos = new JSONObject(result);
+            JSONObject objectStr1 = objectGrupos.getJSONObject("1");
+            JSONObject objectStr2 = objectGrupos.getJSONObject("2");
+            JSONObject objectStr3 = objectGrupos.getJSONObject("3");
+            JSONObject objectStr4 = objectGrupos.getJSONObject("4");
+            JSONObject objectStr5 = objectGrupos.getJSONObject("5");
+
+            String lunes = objectStr1.getString("1");
+            String martes = objectStr1.getString("2");
+            String miercoles = objectStr1.getString("3");
+
+
         } catch (Exception e){
             e.getMessage();
         }

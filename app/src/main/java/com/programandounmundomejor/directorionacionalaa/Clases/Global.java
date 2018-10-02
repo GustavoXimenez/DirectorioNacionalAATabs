@@ -34,6 +34,7 @@ public class Global {
     public static List<GruposXEstado> lstGruposXEstado = new ArrayList<>();
     public static List<GruposXArea> lstGruposXArea = new ArrayList<>();
     public static List<Grupo> lstGrupo = new ArrayList<>();
+    public static List<List<String>> lstHorarios = new ArrayList<>();
 
 
     // Elements Selections
