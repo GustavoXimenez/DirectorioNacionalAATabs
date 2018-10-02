@@ -29,6 +29,7 @@ import com.programandounmundomejor.directorionacionalaa.R;
 import java.util.List;
 
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGrupo;
+import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
 
 public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.ViewHolder> {
@@ -135,11 +136,20 @@ public class GruposXAreaAdapter extends RecyclerView.Adapter<GruposXAreaAdapter.
                     ActivityOptionsCompat options;
                     Activity activity = (AppCompatActivity) context;
                     options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, p1, p2, p3);
+                    int requestCode = getAdapterPosition();
+
+                    //Obtener los valores por default
+                    int color = getValueColor(requestCode);
+                    int idGrupo = lstGruposXArea.get(requestCode).getIdGrupo();
+                    String nombreGrupo = lstGruposXArea.get(requestCode).getNombreGrupo();
 
                     Intent intent = new Intent(context, GrupoActivity.class);
-                    int requestCode = getAdapterPosition();
+                    intent.putExtra("NombreGrupo", nombreGrupo);
+                    intent.putExtra("IdGrupo", idGrupo);
+                    intent.putExtra("Color", color);
+
                     //((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
-                    getValuesGrupo(intent, requestCode, options, 299);
+                    getValuesGrupo(intent, requestCode, options, idGrupo);
                 }
             });
         }
