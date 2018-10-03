@@ -49,6 +49,10 @@ public class DireccionFragment extends Fragment {
     private GlobalMethos globalMethos = new GlobalMethos();
     private int selectedItem = 0;
 
+    private String estadoStr = "";
+    private String municipioStr = "";
+    private String coloniaStr = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,9 +175,11 @@ public class DireccionFragment extends Fragment {
                     @Override
                     public void run() {
                         try{
-                            estadoSelect = globalMethos.limpiarAcentos(estadoSelect);
-                            municipioSelect = globalMethos.limpiarAcentos(municipioSelect);
-                            String params = "signature="+signature+"&Estado="+estadoSelect + "&Municipio="+municipioSelect;
+                            estadoStr = globalMethos.limpiarAcentos(estadoSelect);
+                            municipioStr = globalMethos.limpiarAcentos(municipioSelect);
+                            //estadoSelect = globalMethos.limpiarAcentos(estadoSelect);
+                            //municipioSelect = globalMethos.limpiarAcentos(municipioSelect);
+                            String params = "signature="+signature+"&Estado="+estadoStr+"&Municipio="+municipioStr;
                             final String response = postRequest.enviarPost(params, "searchColonias.php");
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -288,11 +294,14 @@ public class DireccionFragment extends Fragment {
             searchGroupsXCP();
         } else {
             if(!edtEstado.getText().toString().isEmpty()){
-                String params = "signature="+signature+"&estado="+estadoSelect;
+                estadoStr = globalMethos.limpiarAcentos(estadoSelect);
+                String params = "signature="+signature+"&estado="+estadoStr;
                 if(!edtMunicipio.getText().toString().isEmpty()){
-                    params = params + "&municipio="+municipioSelect;
+                    municipioStr = globalMethos.limpiarAcentos(municipioSelect);
+                    params = params + "&municipio="+municipioStr;
                     if(!edtColonia.getText().toString().isEmpty()){
-                        params = params + "&colonia="+coloniaSelect;
+                        coloniaStr = globalMethos.limpiarAcentos(coloniaSelect);
+                        params = params + "&colonia="+coloniaStr;
                     }
                 }
                 searchGroupsXEstado(params);

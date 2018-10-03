@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.gc.materialdesign.views.ButtonFlat;
@@ -15,6 +16,9 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.programandounmundomejor.directorionacionalaa.Fragments.OnboardingFragment1;
 import com.programandounmundomejor.directorionacionalaa.Fragments.OnboardingFragment2;
 import com.programandounmundomejor.directorionacionalaa.Fragments.OnboardingFragment3;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OnboardingActivity extends FragmentActivity {
 
@@ -32,7 +36,7 @@ public class OnboardingActivity extends FragmentActivity {
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
 
         // Check if onboarding_complete is false
-        if(!preferences.getBoolean("onboarding_complete",false)) {
+        if(!preferences.getBoolean("onboarding_complete",true)) {
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, SplashActivity.class);
             startActivity(onboarding);

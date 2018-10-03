@@ -22,7 +22,7 @@ public class GruposXEstadoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grupos_xestado);
 
         if(adapter == null){
-            adapter = new GruposXEstadoAdapter(this, lstGruposXEstado);
+            adapter = new GruposXEstadoAdapter(this,this, lstGruposXEstado);
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_gruposXEstado);

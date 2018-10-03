@@ -21,7 +21,8 @@ public class GrupoActivity extends AppCompatActivity {
 
     private Intent intent;
     private LinearLayout linear;
-    private TextView txtNombreGrupo, txtNumero, txtCalle, txtColonia, txtMunicipio, txtEstado, txtReferencias, txtArea, txtDistrito, txtFechaInicio;
+    private TextView txtNombreGrupo, txtNumero, txtCalle, txtColonia, txtMunicipio, txtEstado, txtReferencias, txtArea,
+            txtDistrito, txtFechaInicio, txtLunes, txtMartes, txtMiercoles, txtJueves, txtViernes, txtSabado, txtDomingo;
     private Context context;
 
     private String nombreGrupo;
@@ -67,6 +68,13 @@ public class GrupoActivity extends AppCompatActivity {
         txtArea = (TextView) findViewById(R.id.txtArea);
         txtDistrito = (TextView) findViewById(R.id.txtDistrito);
         txtFechaInicio = (TextView) findViewById(R.id.txtFechaInicio);
+        txtLunes = (TextView) findViewById(R.id.txtLunes);
+        txtMartes = (TextView) findViewById(R.id.txtMartes);
+        txtMiercoles = (TextView) findViewById(R.id.txtMiercoles);
+        txtJueves = (TextView) findViewById(R.id.txtJueves);
+        txtViernes = (TextView) findViewById(R.id.txtViernes);
+        txtSabado = (TextView) findViewById(R.id.txtSabado);
+        txtDomingo = (TextView) findViewById(R.id.txtDomingo);
     }
 
     private void assignamentValues(){
@@ -93,8 +101,13 @@ public class GrupoActivity extends AppCompatActivity {
                     public void run() {
                         callback.processingResult("horarios", response);
                         if(lstHorarios.size() > 0){
-                            //Creamos array de estados
-
+                            txtLunes.setText(lstHorarios.get(0).get(4));
+                            txtMartes.setText(lstHorarios.get(1).get(4));
+                            txtMiercoles.setText(lstHorarios.get(2).get(4));
+                            txtJueves.setText(lstHorarios.get(3).get(4));
+                            txtViernes.setText(lstHorarios.get(4).get(4));
+                            txtSabado.setText(lstHorarios.get(5).get(4));
+                            txtDomingo.setText(lstHorarios.get(6).get(4));
                         } else {
                             Toast.makeText(context, "error en el servicio", Toast.LENGTH_SHORT).show();
                         }

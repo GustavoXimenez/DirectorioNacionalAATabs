@@ -8,6 +8,9 @@ import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstAreas;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstAreasComplete;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstColonias;
@@ -217,17 +220,14 @@ public class Callback {
         try{
             lstHorarios.clear();
             JSONObject objectGrupos = new JSONObject(result);
-            JSONObject objectStr1 = objectGrupos.getJSONObject("1");
-            JSONObject objectStr2 = objectGrupos.getJSONObject("2");
-            JSONObject objectStr3 = objectGrupos.getJSONObject("3");
-            JSONObject objectStr4 = objectGrupos.getJSONObject("4");
-            JSONObject objectStr5 = objectGrupos.getJSONObject("5");
-
-            String lunes = objectStr1.getString("1");
-            String martes = objectStr1.getString("2");
-            String miercoles = objectStr1.getString("3");
-
-
+            for(int i = 0; i < 7; i++){
+                JSONObject objectStr = objectGrupos.getJSONObject(String.valueOf(i+1));
+                List<String> diaArray = new ArrayList<>();
+                for(int j = 0; j < 5; j++){
+                    diaArray.add(objectStr.getString(String.valueOf(j+1)));
+                }
+                lstHorarios.add(diaArray);
+            }
         } catch (Exception e){
             e.getMessage();
         }

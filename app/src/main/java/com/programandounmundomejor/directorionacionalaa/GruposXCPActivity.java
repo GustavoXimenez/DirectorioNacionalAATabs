@@ -20,7 +20,7 @@ public class GruposXCPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grupos_xcp);
 
         if(adapter == null){
-            adapter = new GruposXCPAdapter(this, lstGruposXCP);
+            adapter = new GruposXCPAdapter(this,this, lstGruposXCP);
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_gruposXCP);
