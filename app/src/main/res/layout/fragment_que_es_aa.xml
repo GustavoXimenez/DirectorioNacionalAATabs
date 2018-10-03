@@ -9,9 +9,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="¿Qué es AA?"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:padding="15dp"
+        android:layout_gravity="right"
+        android:text="Alcohólicos Anónimos (A.A.) es una comunidad de hombres y mujeres que comparten su mutua experiencia, fortaleza y esperanza para resolver su problema común y ayudar a otros a recuperarse del alcoholismo. El único requisito para ser miembro de A.A. es el deseo de dejar la bebida.
+
+ Para ser miembro de A.A. no se pagan honorarios ni cuotas; nos mantenemos con nuestras propias contribuciones. A.A., no está afiliada a ninguna secta, religión, partido político, organización o institución alguna; no desea intervenir en controversias, no respalda ni se opone a ninguna causa. Nuestro objetivo primordial es mantenernos sobrios y ayudar a otros alcohólicos a alcanzar el estado de sobriedad.
+
+A.A., se interesa exclusivamente en la recuperación y la sobriedad continuada de los alcohólicos individuales que recurren a la comunidad para pedir ayuda. No participa en la investigación del alcoholismo ni en tratamientos médicos o psiquiátricos, y no apoya a ninguna causa.
+
+Alcohólicos Anónimos no tiene opinión acerca de asuntos ajenos a sus actividades; por consiguiente su nombre nunca nunca debe mezclarse en polémicas públicas."
+        android:textSize="14sp" />
 
 </FrameLayout>

@@ -17,8 +17,35 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:text="Selecciona la información para realizar tu busqueda:"
+            android:text="Realiza tu busqueda por Código Postal:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txtNormal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtCodigoPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="Codigo Postal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="O selecciona el Estado y/o Municipio y/o Colonia:"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/txtNormal" />
 
@@ -53,33 +80,6 @@
                 android:layout_marginTop="10dp"
                 android:focusable="false"
                 android:hint="Colonia" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="O realiza tu busqueda por Código Postal:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/txtNormal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/edtCodigoPostal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:inputType="number"
-                android:hint="Codigo Postal" />
 
         </LinearLayout>
 

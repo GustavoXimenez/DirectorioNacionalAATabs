@@ -8,15 +8,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola mundo!"
-        android:textSize="48sp"
+        android:text="¿Tienes problemas con tu manera de beber?"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
         android:layout_marginTop="50dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
         android:layout_marginTop="20dp"
-        android:text="Test de onboarding."/>
+        android:text="Ponte en contacto con nosotros al teléfono: 5705 5802"/>
 
 </LinearLayout>
