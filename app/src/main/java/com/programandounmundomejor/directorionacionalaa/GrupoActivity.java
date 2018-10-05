@@ -2,6 +2,7 @@ package com.programandounmundomejor.directorionacionalaa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,7 +22,7 @@ public class GrupoActivity extends AppCompatActivity {
 
     private Intent intent;
     private LinearLayout linear;
-    private TextView txtNombreGrupo, txtNumero, txtCalle, txtColonia, txtMunicipio, txtEstado, txtReferencias, txtArea,
+    private TextView txtTitleNombreGrupo, txtNombreGrupo, txtNumero, txtCalle, txtColonia, txtMunicipio, txtEstado, txtReferencias, txtArea,
             txtDistrito, txtFechaInicio, txtLunes, txtMartes, txtMiercoles, txtJueves, txtViernes, txtSabado, txtDomingo;
     private Context context;
 
@@ -31,6 +32,15 @@ public class GrupoActivity extends AppCompatActivity {
 
     private PostRequest postRequest = new PostRequest();
     private Callback callback = new Callback();
+
+    // Extra name for the ID parameter
+    public static final String EXTRA_PARAM_ID = "detail:_id";
+    // View name of the header image. Used for activity scene transitions
+    public static final String VIEW_NAME_HEADER_IMAGE = "detail:header:image";
+    // View name of the header title. Used for activity scene transitions
+    public static final String VIEW_NAME_HEADER_TITLE = "detail:header:title";
+    // View name of the header title. Used for activity scene transitions
+    public static final String VIEW_NAME_HEADER_NAME = "detail:header:name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,10 @@ public class GrupoActivity extends AppCompatActivity {
 
         initElements();
 
+        ViewCompat.setTransitionName(linear, VIEW_NAME_HEADER_IMAGE);
+        ViewCompat.setTransitionName(txtTitleNombreGrupo, VIEW_NAME_HEADER_TITLE);
+        ViewCompat.setTransitionName(txtNombreGrupo, VIEW_NAME_HEADER_NAME);
+
         assignamentValues();
 
         getHorarios(idGrupo);
@@ -58,6 +72,7 @@ public class GrupoActivity extends AppCompatActivity {
 
     private void initElements(){
         linear = (LinearLayout) findViewById(R.id.initial);
+        txtTitleNombreGrupo = (TextView) findViewById(R.id.txtTitleNombreGrupo);
         txtNombreGrupo = (TextView) findViewById(R.id.txtNombreGrupo);
         txtCalle = (TextView) findViewById(R.id.txtCalle);
         txtNumero = (TextView) findViewById(R.id.txtNumero);

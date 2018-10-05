@@ -4,7 +4,10 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -15,16 +18,12 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GrupoActivity;
-import com.programandounmundomejor.directorionacionalaa.GruposXAreaActivity;
 import com.programandounmundomejor.directorionacionalaa.Models.GruposXCP;
 import com.programandounmundomejor.directorionacionalaa.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,8 +32,6 @@ import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lst
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
 
 public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.ViewHolder> {
-
-    private static final String DEBUG_TAG = "GruposXCPAdapter";
 
     private Context context;
     private List<GruposXCP> groupList;
@@ -61,16 +58,13 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         String nombreGrupo = groupList.get(position).getNombreGrupo();
         String colonia = groupList.get(position).getColonia();
-        String municipio = groupList.get(position).getMunicipio();
 
         TextView txtNombreGrupo = viewHolder.txtNombreGrupo;
         TextView txtValueColonia = viewHolder.txtValueColonia;
-        TextView txtValueMunicipio = viewHolder.txtValueMunicipio;
         LinearLayout linear = viewHolder.linear;
 
         txtNombreGrupo.setText(nombreGrupo);
         txtValueColonia.setText(colonia);
-        txtValueMunicipio.setText(municipio);
 
         int color = getValueColor(position);
         linear.setBackgroundColor(context.getResources().getColor(color));
@@ -116,59 +110,60 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
 
         private TextView txtNombreGrupo;
         private TextView txtValueColonia;
-        private TextView txtValueMunicipio;
+        private TextView txtTitleNombreGrupo;
         private LinearLayout linear;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNombreGrupo = (TextView) itemView.findViewById(R.id.txtNombreGrupo);
             txtValueColonia = (TextView) itemView.findViewById(R.id.txtValueColonia);
-            txtValueMunicipio = (TextView) itemView.findViewById(R.id.txtValueMunicipio);
+            txtTitleNombreGrupo = (TextView) itemView.findViewById(R.id.txtTitleNombreGrupo);
             linear = (LinearLayout) itemView.findViewById(R.id.linear);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Pair<View, String> p1 = Pair.create((View) txtNombreGrupo, GruposXAreaActivity.TRANSITION_INITIAL);
-                    Pair<View, String> p2 = Pair.create((View) txtValueColonia, GruposXAreaActivity.TRANSITION_NAME);
-                    Pair<View, String> p3 = Pair.create((View) txtValueMunicipio, GruposXAreaActivity.TRANSITION_DELETE_BUTTON);
-
-                    ActivityOptionsCompat options;
-                    Activity activity = (AppCompatActivity) context;
-                    options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, p1, p2, p3);
                     int requestCode = getAdapterPosition();
-
-                    //Obtener los valores por default
-                    int color = getValueColor(requestCode);
-                    int idGrupo = lstGruposXCP.get(requestCode).getIdGrupo();
-                    String nombreGrupo = lstGruposXCP.get(requestCode).getNombreGrupo();
-
-                    Intent intent = new Intent(context, GrupoActivity.class);
-                    intent.putExtra("NombreGrupo", nombreGrupo);
-                    intent.putExtra("IdGrupo", idGrupo);
-                    intent.putExtra("Color", color);
-
-                    //((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
-                    getValuesGrupo(intent, requestCode, options, idGrupo);
+                    getValuesGrupo(v, requestCode);
                 }
             });
         }
     }
 
-    private void getValuesGrupo(final Intent intent, final int requestCode, final ActivityOptionsCompat options, final int idGrupo){
+    private void getValuesGrupo(final View v, final int requestCode){
         Thread thread = new Thread(){
             @Override
             public void run() {
+                final int idGrupo = lstGruposXCP.get(requestCode).getIdGrupo();
+                final String nombreGrupo = lstGruposXCP.get(requestCode).getNombreGrupo();
+                final int color = getValueColor(requestCode);
                 final String response = postRequest.enviarPost("signature="+signature+"&idGrupo="+idGrupo, "searchGrupoXId.php");
                 activityGrupo.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         callback.processingResult("grupo", response);
                         if(lstGrupo.size() > 0){
-                            //Creamos array de estados
-                            ((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
+                            Activity activity = (AppCompatActivity) context;
+                            Intent intent = new Intent(context, GrupoActivity.class);
+                            intent.putExtra("IdGrupo", idGrupo);
+                            intent.putExtra("NombreGrupo", nombreGrupo);
+                            intent.putExtra("Color", color);
+                            // Check if we're running on Android 5.0 or higher
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                        activity,
+                                        new Pair<View, String>(v.findViewById(R.id.linear), GrupoActivity.VIEW_NAME_HEADER_IMAGE),
+                                        new Pair<View, String>(v.findViewById(R.id.txtTitleNombreGrupo), GrupoActivity.VIEW_NAME_HEADER_TITLE),
+                                        new Pair<View, String>(v.findViewById(R.id.txtNombreGrupo), GrupoActivity.VIEW_NAME_HEADER_NAME));
+
+                                //((AppCompatActivity) context).startActivityForResult(intent, requestCode, options.toBundle());
+                                ActivityCompat.startActivity(context, intent, options.toBundle());
+                            } else {
+                                // Swap without transition
+                                ((AppCompatActivity) context).startActivity(intent);
+                            }
                         } else {
-                            Toast.makeText(context, "error en el servicio", Toast.LENGTH_SHORT).show();
+                            messageSnackbar("error en el servicio", "Intentar más tarde", v);
                         }
                     }
                 });
@@ -202,5 +197,17 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
                 return R.color.colorBlueFive;
         }
         return 0;
+    }
+
+    private void messageSnackbar(String messageError, String messageButton, View v){
+        Snackbar snackbar = Snackbar
+                .make(v, messageError, Snackbar.LENGTH_LONG)
+                .setAction(messageButton, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+        snackbar.show();
     }
 }

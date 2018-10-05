@@ -36,7 +36,7 @@ public class OnboardingActivity extends FragmentActivity {
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
 
         // Check if onboarding_complete is false
-        if(!preferences.getBoolean("onboarding_complete",true)) {
+        if(preferences.getBoolean("onboarding_complete",false)) {
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, SplashActivity.class);
             startActivity(onboarding);
@@ -97,7 +97,7 @@ public class OnboardingActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 if(position == 2){
                     skip.setVisibility(View.GONE);
-                    next.setText("Terminar");
+                    next.setText("Buscar");
                 } else {
                     skip.setVisibility(View.VISIBLE);
                     next.setText("Siguiente");

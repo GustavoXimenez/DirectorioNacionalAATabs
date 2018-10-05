@@ -6,15 +6,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
+import com.programandounmundomejor.directorionacionalaa.Clases.GetProgressDialog;
 import com.programandounmundomejor.directorionacionalaa.Clases.GlobalMethos;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GruposXCPActivity;
@@ -47,6 +48,7 @@ public class DireccionFragment extends Fragment {
     private PostRequest postRequest = new PostRequest();
     private Callback callback = new Callback();
     private GlobalMethos globalMethos = new GlobalMethos();
+    private GetProgressDialog progressDialog = new GetProgressDialog();
     private int selectedItem = 0;
 
     private String estadoStr = "";
@@ -111,6 +113,7 @@ public class DireccionFragment extends Fragment {
     }
 
     private void selectEstado(){
+        progressDialog.startProgressDialog(getActivity());
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -119,13 +122,14 @@ public class DireccionFragment extends Fragment {
                     @Override
                     public void run() {
                         callback.processingResult("estados", response);
+                        progressDialog.stopProgressDialog(getActivity());
                         if(lstEstados.size() > 0){
                             //Creamos array de estados
                             String[] estadosArr = new String[lstEstados.size()];
                             estadosArr = lstEstados.toArray(estadosArr);
                             alertDialog(estadosArr, edtEstado, "estado");
                         } else {
-                            Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                            messageSnackbar("No se encontraron estados", "Intente más tarde");
                         }
                     }
                 });
@@ -136,6 +140,7 @@ public class DireccionFragment extends Fragment {
 
     private void selectMunicipio(){
         if(estadoSelect != null){
+            progressDialog.startProgressDialog(getActivity());
             //Buscamos el idEstado
             final int idEstado = searchId(lstEstadosComplete, estadoSelect);
             if(idEstado > 0){
@@ -147,13 +152,14 @@ public class DireccionFragment extends Fragment {
                             @Override
                             public void run() {
                                 callback.processingResult("municipios", response);
+                                progressDialog.stopProgressDialog(getActivity());
                                 if(lstMunicipios.size() > 0){
                                     //Creamos array de municipios
                                     String[] municipiosArr = new String[lstMunicipios.size()];
                                     municipiosArr = lstMunicipios.toArray(municipiosArr);
                                     alertDialog(municipiosArr, edtMunicipio, "municipio");
                                 } else {
-                                    Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                                    messageSnackbar("No se encontraron municipios", "Intente más tarde");
                                 }
                             }
                         });
@@ -161,10 +167,10 @@ public class DireccionFragment extends Fragment {
                 };
                 thread.start();
             } else {
-                Toast.makeText(getActivity(), "error de estado", Toast.LENGTH_SHORT).show();
+                messageSnackbar("error de estado", "Intente más nuevamente");
             }
         } else {
-            Toast.makeText(getActivity(), "Selecciona un estado", Toast.LENGTH_SHORT).show();
+            messageSnackbar("Selecciona un estado", "Seleccionar");
         }
     }
 
@@ -191,7 +197,8 @@ public class DireccionFragment extends Fragment {
                                         coloniasArr = lstColonias.toArray(coloniasArr);
                                         alertDialog(coloniasArr, edtColonia, "colonia");
                                     } else {
-                                        Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                                        messageSnackbar("No se encontraron colonias", "Intente más tarde");
+
                                     }
                                 }
                             });
@@ -202,10 +209,10 @@ public class DireccionFragment extends Fragment {
                 };
                 thread.start();
             } else {
-                Toast.makeText(getActivity(), "Selecciona un municipio", Toast.LENGTH_SHORT).show();
+                messageSnackbar("Selecciona un municipio", "Seleccionar");
             }
         } else {
-            Toast.makeText(getActivity(), "Selecciona un estado", Toast.LENGTH_SHORT).show();
+            messageSnackbar("Selecciona un estado", "Seleccionar");
         }
     }
 
@@ -306,12 +313,13 @@ public class DireccionFragment extends Fragment {
                 }
                 searchGroupsXEstado(params);
             } else {
-                Toast.makeText(getActivity(), "Debes ingresar valores", Toast.LENGTH_LONG).show();
+                messageSnackbar("Debes ingresar valores", "Llenar formulario");
             }
         }
     }
 
     private void searchGroupsXCP(){
+        progressDialog.startProgressDialog(getActivity());
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -320,12 +328,14 @@ public class DireccionFragment extends Fragment {
                     @Override
                     public void run() {
                         callback.processingResult("gruposXCP", response);
+                        progressDialog.stopProgressDialog(getActivity());
                         if(lstGruposXCP.size() > 0){
                             //Creamos array de estados
                             Intent intent = new Intent(getActivity(), GruposXCPActivity.class);
                             getActivity().startActivity(intent);
                         } else {
-                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
+                            //Snackbar.make(getActivity().findViewById(R.id.main_content), "No se encontraron Grupos", Snackbar.LENGTH_LONG).show();
+                            messageSnackbar("No se encontraron Grupos", "Buscar nuevamente");
                         }
                     }
                 });
@@ -335,6 +345,7 @@ public class DireccionFragment extends Fragment {
     }
 
     private void searchGroupsXEstado(final String params){
+        progressDialog.startProgressDialog(getActivity());
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -343,17 +354,31 @@ public class DireccionFragment extends Fragment {
                     @Override
                     public void run() {
                         callback.processingResult("gruposXEstado", response);
+                        progressDialog.stopProgressDialog(getActivity());
                         if(lstGruposXEstado.size() > 0){
                             //Creamos array de estados
                             Intent intent = new Intent(getActivity(), GruposXEstadoActivity.class);
                             getActivity().startActivity(intent);
                         } else {
-                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
+                            messageSnackbar("No se encontraron Grupos", "Buscar nuevamente");
                         }
                     }
                 });
             }
         };
         thread.start();
+    }
+
+    private void messageSnackbar(String messageError, String messageButton){
+        Snackbar snackbar = Snackbar
+                .make(getActivity().findViewById(R.id.main_content), messageError, Snackbar.LENGTH_LONG)
+                .setAction(messageButton, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+        snackbar.show();
     }
 }

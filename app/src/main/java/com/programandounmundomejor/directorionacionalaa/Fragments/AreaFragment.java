@@ -1,40 +1,32 @@
 package com.programandounmundomejor.directorionacionalaa.Fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.Callback;
+import com.programandounmundomejor.directorionacionalaa.Clases.GetProgressDialog;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GruposXAreaActivity;
-import com.programandounmundomejor.directorionacionalaa.Models.GruposXArea;
 import com.programandounmundomejor.directorionacionalaa.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.areaSelect;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.coloniaSelect;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.distritosSelect;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.estadoSelect;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstAreas;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstAreasComplete;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstColonias;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstDistritos;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstados;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstEstadosComplete;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstGruposXArea;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.lstMunicipios;
-import static com.programandounmundomejor.directorionacionalaa.Clases.Global.municipioSelect;
 import static com.programandounmundomejor.directorionacionalaa.Clases.Global.signature;
 
 
@@ -47,6 +39,7 @@ public class AreaFragment extends Fragment {
     //Variables globales
     private PostRequest postRequest = new PostRequest();
     private Callback callback = new Callback();
+    private GetProgressDialog progressDialog = new GetProgressDialog();
     private int selectedItem = 0;
 
     @Override
@@ -97,13 +90,14 @@ public class AreaFragment extends Fragment {
                     }
                     searchGroupsXArea(params);
                 } else {
-                    Toast.makeText(getActivity(), "Debes seleccionar un Área", Toast.LENGTH_LONG).show();
+                    messageSnackbar("Debes seleccionar un Área", "Seleccionar");
                 }
             }
         });
     }
 
     private void selectArea(){
+        progressDialog.startProgressDialog(getActivity());
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -112,13 +106,15 @@ public class AreaFragment extends Fragment {
                     @Override
                     public void run() {
                         callback.processingResult("areas", response);
+                        progressDialog.stopProgressDialog(getActivity());
                         if(lstAreas.size() > 0){
                             //Creamos array de estados
                             String[] areasArr = new String[lstAreas.size()];
                             areasArr = lstAreas.toArray(areasArr);
                             alertDialog(areasArr, edtArea, "area");
                         } else {
-                            Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                            messageSnackbar("Problemas de red", "Intentar más tarde");
+
                         }
                     }
                 });
@@ -132,6 +128,7 @@ public class AreaFragment extends Fragment {
             //Buscamos el idEstado
             final int idArea = searchId(lstAreasComplete, areaSelect);
             if(idArea > 0){
+                progressDialog.startProgressDialog(getActivity());
                 Thread thread = new Thread(){
                     @Override
                     public void run() {
@@ -140,13 +137,14 @@ public class AreaFragment extends Fragment {
                             @Override
                             public void run() {
                                 callback.processingResult("distritos", response);
+                                progressDialog.stopProgressDialog(getActivity());
                                 if(lstDistritos.size() > 0){
                                     //Creamos array de municipios
                                     String[] distritosArr = new String[lstDistritos.size()];
                                     distritosArr = lstDistritos.toArray(distritosArr);
                                     alertDialog(distritosArr, edtDistrito, "distrito");
                                 } else {
-                                    Toast.makeText(getActivity(), "error en el servicio", Toast.LENGTH_SHORT).show();
+                                    messageSnackbar("Problemas de red", "Intentar más tarde");
                                 }
                             }
                         });
@@ -154,10 +152,10 @@ public class AreaFragment extends Fragment {
                 };
                 thread.start();
             } else {
-                Toast.makeText(getActivity(), "error de distrito", Toast.LENGTH_SHORT).show();
+                messageSnackbar("Problemas de red", "Intentar más tarde");
             }
         } else {
-            Toast.makeText(getActivity(), "Selecciona una area", Toast.LENGTH_SHORT).show();
+            messageSnackbar("Selecciona una area", "Seleccionar");
         }
     }
 
@@ -226,6 +224,7 @@ public class AreaFragment extends Fragment {
     }
 
     private void searchGroupsXArea(final String params){
+        progressDialog.startProgressDialog(getActivity());
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -234,17 +233,31 @@ public class AreaFragment extends Fragment {
                     @Override
                     public void run() {
                         callback.processingResult("gruposXArea", response);
+                        progressDialog.stopProgressDialog(getActivity());
                         if(lstGruposXArea.size() > 0){
                             //Creamos array de estados
                             Intent intent = new Intent(getActivity(), GruposXAreaActivity.class);
                             getActivity().startActivity(intent);
                         } else {
-                            Toast.makeText(getActivity(), "No se encontraron Grupos.", Toast.LENGTH_SHORT).show();
+                            messageSnackbar("No se encontraron Grupos.", "Cambiar datos");
                         }
                     }
                 });
             }
         };
         thread.start();
+    }
+
+    private void messageSnackbar(String messageError, String messageButton){
+        Snackbar snackbar = Snackbar
+                .make(getActivity().findViewById(R.id.main_content), messageError, Snackbar.LENGTH_LONG)
+                .setAction(messageButton, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+        snackbar.show();
     }
 }
