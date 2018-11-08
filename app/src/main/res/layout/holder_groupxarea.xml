@@ -27,7 +27,7 @@
             android:gravity="center"
             android:transitionName="initial_transition"
             android:textColor="@android:color/white"
-            android:text="Nombre del Grupo"
+            android:text="@string/grupo_txtNombreGrupo"
             android:padding="5dp"
             android:textSize="17sp" />
 
@@ -61,12 +61,13 @@
                     android:transitionName="delete_button_transition"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="Colonia: " />
+                    android:text="@string/listGrupo_txtColonia" />
 
                 <TextView
                     android:id="@+id/txtValueColonia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:transitionName="name_transition"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -85,12 +86,13 @@
                     android:transitionName="delete_button_transition"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="Municipio: " />
+                    android:text="@string/listGrupo_txtMunicipio" />
 
                 <TextView
                     android:id="@+id/txtValueMunicipio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:transitionName="name_transition"
                     android:textColor="@color/colorPrimaryDark" />
 

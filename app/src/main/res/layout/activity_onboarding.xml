@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Saltar"
+            android:text="@string/onboarding_txtSkip"
             android:id="@+id/skip"
             />
 
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="Siguiente"
+            android:text="@string/onboarding_txtNext"
             android:id="@+id/next"
             />
 

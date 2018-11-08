@@ -74,7 +74,7 @@ public class OnboardingActivity extends FragmentActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishOnboarding();
+                finishOnboarding(false);
             }
         });
 
@@ -82,7 +82,7 @@ public class OnboardingActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 if(pager.getCurrentItem() == 2) { // The last screen
-                    finishOnboarding();
+                    finishOnboarding(true);
                 } else {
                     pager.setCurrentItem(
                             pager.getCurrentItem() + 1,
@@ -97,23 +97,29 @@ public class OnboardingActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 if(position == 2){
                     skip.setVisibility(View.GONE);
-                    next.setText("Buscar");
+                    next.setText(getResources().getString(R.string.fragment_main_txtSearch));
                 } else {
                     skip.setVisibility(View.VISIBLE);
-                    next.setText("Siguiente");
+                    next.setText(getResources().getString(R.string.onboarding_txtNext));
                 }
             }
         });
     }
 
-    private void finishOnboarding() {
+    private void finishOnboarding(Boolean type) {
         // Get the shared preferences
         SharedPreferences preferences =
                 getSharedPreferences("my_preferences", MODE_PRIVATE);
 
-        // Set onboarding_complete to true
-        preferences.edit()
-                .putBoolean("onboarding_complete",true).apply();
+        if(type){
+            // Set onboarding_complete to true
+            preferences.edit()
+                    .putBoolean("onboarding_complete",true).apply();
+        } else {
+            // Set onboarding_complete to true
+            preferences.edit()
+                    .putBoolean("onboarding_complete",false).apply();
+        }
 
         // Launch the main Activity, called MainActivity
         Intent main = new Intent(this, MainActivity.class);

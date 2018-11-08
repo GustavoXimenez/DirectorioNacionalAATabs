@@ -124,7 +124,7 @@ public class GrupoActivity extends AppCompatActivity {
                             txtSabado.setText(lstHorarios.get(5).get(4));
                             txtDomingo.setText(lstHorarios.get(6).get(4));
                         } else {
-                            Toast.makeText(context, "error en el servicio", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.grupo_txterrorService, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

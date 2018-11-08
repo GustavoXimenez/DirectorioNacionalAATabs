@@ -6,95 +6,116 @@
     tools:context=".Fragments.DireccionFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin15"
         android:orientation="vertical"
-        android:weightSum="10"
         tools:context=".MainActivity">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="Realiza tu busqueda por Código Postal:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/txtNormal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="2"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edtCodigoPostal"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:inputType="number"
-                android:hint="Codigo Postal" />
+                android:text="@string/fragment_main_txtDescCP"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtNormal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtCodigoPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/txtNormal"
+                    android:inputType="number"
+                    android:hint="" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="O selecciona el Estado y/o Municipio y/o Colonia:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/txtNormal" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edtEstado"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="false"
-                android:hint="Estado" />
+                android:text="@string/fragment_main_txtDescEstado"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/txtNormal" />
 
-            <EditText
-                android:id="@+id/edtMunicipio"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="false"
-                android:hint="Municipio" />
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="4"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edtColonia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="false"
-                android:hint="Colonia" />
+                <EditText
+                    android:id="@+id/edtEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:textSize="@dimen/txtNormal"
+                    android:hint="@string/fragment_main_txtEstado" />
+
+                <EditText
+                    android:id="@+id/edtMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:textSize="@dimen/txtNormal"
+                    android:hint="@string/fragment_main_txtMunicipio" />
+
+                <EditText
+                    android:id="@+id/edtColonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusable="false"
+                    android:textSize="@dimen/txtNormal"
+                    android:hint="@string/fragment_main_txtColonia" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="bottom">
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:drawableLeft="@android:drawable/ic_menu_search"
             android:id="@+id/btnSearhDireccion"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
-            android:layout_weight="1"
-            android:text="Buscar"
-            android:textColor="#FFFFFF" />
+            android:text="@string/fragment_main_txtSearch" />
 
     </LinearLayout>
 

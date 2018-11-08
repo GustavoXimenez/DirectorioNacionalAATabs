@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido!"
+        android:text="@string/onboarding_txtPage1_1"
         android:textColor="@color/colorWhite"
         android:textSize="48sp"
         android:layout_marginTop="50dp"/>
@@ -20,6 +20,6 @@
         android:textColor="@color/colorWhite"
         android:textSize="23sp"
         android:layout_marginTop="20dp"
-        android:text="Directorio Nacional de Alcohólicos Anónimos, Sección México"/>
+        android:text="@string/onboarding_txtPage1_2"/>
 
 </LinearLayout>

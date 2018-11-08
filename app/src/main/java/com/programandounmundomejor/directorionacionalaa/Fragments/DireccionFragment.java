@@ -1,10 +1,8 @@
 package com.programandounmundomejor.directorionacionalaa.Fragments;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -20,7 +18,6 @@ import com.programandounmundomejor.directorionacionalaa.Clases.GlobalMethos;
 import com.programandounmundomejor.directorionacionalaa.Clases.PostRequest;
 import com.programandounmundomejor.directorionacionalaa.GruposXCPActivity;
 import com.programandounmundomejor.directorionacionalaa.GruposXEstadoActivity;
-import com.programandounmundomejor.directorionacionalaa.Models.GruposXEstado;
 import com.programandounmundomejor.directorionacionalaa.R;
 
 import java.util.HashMap;

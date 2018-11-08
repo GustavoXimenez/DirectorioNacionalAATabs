@@ -58,13 +58,16 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         String nombreGrupo = groupList.get(position).getNombreGrupo();
         String colonia = groupList.get(position).getColonia();
+        String municipio = groupList.get(position).getMunicipio();
 
         TextView txtNombreGrupo = viewHolder.txtNombreGrupo;
         TextView txtValueColonia = viewHolder.txtValueColonia;
+        TextView txtValueMunicipio = viewHolder.txtValueMunicipio;
         LinearLayout linear = viewHolder.linear;
 
         txtNombreGrupo.setText(nombreGrupo);
         txtValueColonia.setText(colonia);
+        txtValueMunicipio.setText(municipio);
 
         int color = getValueColor(position);
         linear.setBackgroundColor(context.getResources().getColor(color));
@@ -110,6 +113,7 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
 
         private TextView txtNombreGrupo;
         private TextView txtValueColonia;
+        private TextView txtValueMunicipio;
         private TextView txtTitleNombreGrupo;
         private LinearLayout linear;
 
@@ -117,6 +121,7 @@ public class GruposXCPAdapter extends RecyclerView.Adapter<GruposXCPAdapter.View
             super(itemView);
             txtNombreGrupo = (TextView) itemView.findViewById(R.id.txtNombreGrupo);
             txtValueColonia = (TextView) itemView.findViewById(R.id.txtValueColonia);
+            txtValueMunicipio = (TextView) itemView.findViewById(R.id.txtValueMunicipio);
             txtTitleNombreGrupo = (TextView) itemView.findViewById(R.id.txtTitleNombreGrupo);
             linear = (LinearLayout) itemView.findViewById(R.id.linear);
 

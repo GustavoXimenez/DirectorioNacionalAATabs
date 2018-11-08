@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buscal el Grupo"
+        android:text="@string/onboarding_txtPage2_1"
         android:gravity="center"
         android:textColor="@color/colorWhite"
         android:textSize="48sp"
@@ -21,6 +21,6 @@
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorWhite"
-        android:text="Mas cercano a tu Comunidad"/>
+        android:text="@string/onboarding_txtPage2_2"/>
 
 </LinearLayout>
