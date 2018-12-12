@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import com.programandounmundomejor.directorionacionalaa.Clases.SplashScreenMethods;
 
@@ -28,6 +30,9 @@ public class SplashActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // Hide title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Inicialize Crashlitics
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_splash);
 
